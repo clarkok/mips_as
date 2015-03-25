@@ -1,0 +1,227 @@
+<document>
+  <decleration>
+    <item name="R" format="oooo-ooss-ssst-tttt-dddd-dhhh-hhff-ffff" size="4">
+      <param name="op" type="immediate" rep="o" />
+      <param name="shamt" type="immediate" rep="h" />
+      <param name="func" type="immediate" rep="f" />
+      <param name="rd" type="register" rep="d" />
+      <param name="rs" type="register" rep="s" />
+      <param name="rt" type="register" rep="t" />
+    </item>
+    <item name="I" format="oooo-ooss-ssst-tttt-iiii-iiii-iiii-iiii" size="4">
+      <param name="op" type="immediate" rep="o" />
+      <param name="rs" type="register" rep="s" />
+      <param name="rt" type="register" rep="t" />
+      <param name="imm" type="immediate" rep="i" />
+    </item>
+    <item name="J" format="oooo-ooaa-aaaa-aaaa-aaaa-aaaa-aaaa-aaaa" size="4">
+      <param name="op" type="immediate" rep="o" />
+      <param name="addr" type="address" rep="a" />
+    </item>
+    <item name="db" format="iiii-iiii" size="1">
+      <param name="imm" type="immediate" rep="i" />
+    </item>
+    <item name="dw" format="iiii-iiii-iiii-iiii" size="2">
+      <param name="imm" type="immediate" rep="i" />
+    </item>
+    <item name="dd" format="iiii-iiii-iiii-iiii-iiii-iiii-iiii-iiii" size="4">
+      <param name="imm" type="immediate" rep="i" />
+    </item>
+  </decleration>
+  <defination>
+    <instrument name="add" type="R" op="0b000000" shamt="0b00000" func="0b100000">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="addu" type="R" op="0b000000" shamt="0b00000" func="0b100001">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="sub" type="R" op="0b000000" shamt="0b00000" func="0b100010">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="subu" type="R" op="0b000000" shamt="0b00000" func="0b100011">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="and" type="R" op="0b000000" shamt="0b00000" func="0b100100">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="or" type="R" op="0b000000" shamt="0b00000" func="0b100101">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="xor" type="R" op="0b000000" shamt="0b00000" func="0b100110">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="nor" type="R" op="0b000000" shamt="0b00000" func="0b100111">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="slt" type="R" op="0b000000" shamt="0b00000" func="0b101010">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="sltu" type="R" op="0b000000" shamt="0b00000" func="0b101011">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="sll" type="R" op="0b000000" rs="0" func="0b000000">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rt" />
+      <argument type="immediate" name="shamt" />
+    </instrument>
+
+    <instrument name="srl" type="R" op="0b000000" rs="0" func="0b000010">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rt" />
+      <argument type="immediate" name="shamt" />
+    </instrument>
+
+    <instrument name="sra" type="R" op="0b000000" shamt="0b00000" func="0b000011">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rt" />
+      <argument type="immediate" name="shamt" />
+    </instrument>
+
+    <instrument name="sllv" type="R" op="0b000000" shamt="0b00000" func="0b000100">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="srlv" type="R" op="0b000000" shamt="0b00000" func="0b000110">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="srav" type="R" op="0b000000" shamt="0b00000" func="0b000111">
+      <argument type="register" name="rd" />
+      <argument type="register" name="rs" />
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="jr" type="R" op="0b000000" rt="0" rd="0" shamt="0b00000" func="0b001000">
+      <argument type="register" name="rs" />
+    </instrument>
+
+    <instrument name="addi" type="I" op="0b001000">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="addiu" type="I" op="0b001001">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="nadi" type="I" op="0b001100">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="ori" type="I" op="0b001101">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="xori" type="I" op="0b001110">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="lui" type="I" op="0b001111" rs="0">
+      <argument type="register" name="rt" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="lw" type="I" op="0b100011">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
+    <instrument name="sw" type="I" op="0b101011">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
+    <instrument name="beq" type="I" op="0b000100">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="bne" type="I" op="0b000101">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="slti" type="I" op="0b001010">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="sltiu" type="I" op="0b001011">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="immediate" name="imm" />
+    </instrument>
+
+    <instrument name="j" type="J" op="0b000010">
+      <argument type="address" name="addr" />
+    </instrument>
+
+    <instrument name="jal" type="J" op="0b000011">
+      <argument type="address" name="addr" />
+    </instrument>
+
+    <command name="db" type="db">
+      <argument type="immediate" name="imm" />
+    </command>
+
+    <command name="dw" type="dw">
+      <argument type="immediate" name="imm" />
+    </command>
+
+    <command name="dd" type="dd">
+      <argument type="immediate" name="imm" />
+    </command>
+  </defination>
+  <registers>
+    <reg name="zero" id="0" />
+    <reg name="sp" id="30" />
+  </registers>
+</document>

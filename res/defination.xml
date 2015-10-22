@@ -135,19 +135,19 @@
       <argument type="register" name="rs" />
     </instrument>
 
-    <instrument name="syscall" type="R" op="0b000000" func="0b001100" shamt="0b000000" rs="0b00000" rd="0b00000">
+    <instrument name="syscall" type="R" op="0b000000" func="0b001100" shamt="0b000000" rs="0" rd="0">
       <argument type="register" name="rt" />
     </instrument>
 
-    <instrument name="eret" type="R" op="0b001010" func="0b010010" shamt="0b000000" rs="0b00000" rd="0b00000" rt="0b00000">
+    <instrument name="eret" type="R" op="0b001010" func="0b010010" shamt="0b000000" rs="0" rd="0" rt="0">
     </instrument>
 
-    <instrument name="mfco" type="R" op="0b001010" func="0b000000" shamt="0b000000" rs="0b00000">
+    <instrument name="mfco" type="R" op="0b001010" func="0b000000" shamt="0b000000" rs="0">
       <argument type="register" name="rt" />
       <argument type="immediate" name="rd" />
     </instrument>
 
-    <instrument name="mtco" type="R" op="0b001010" func="0b000100" shamt="0b000000" rs="0b00000">
+    <instrument name="mtco" type="R" op="0b001010" func="0b000100" shamt="0b000000" rs="0">
       <argument type="register" name="rt" />
       <argument type="immediate" name="rd" />
     </instrument>

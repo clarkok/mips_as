@@ -9,8 +9,8 @@ OBJECT_DIR	= objs/
 DEPENDENCY_DIR	= dep/
 
 # compiler & flags
-COMPILER	= clang++
-LINKER		= clang++
+COMPILER	= c++
+LINKER		= c++
 
 COMMON_FLAGS	= -std=c++11 -Wall -g -I$(INCLUDE_DIR)
 COMPILE_FLAGS	= $(COMMON_FLAGS) -c

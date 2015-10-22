@@ -35,6 +35,8 @@ Parser::parse(std::istream &in, Defination &def, std::vector<Item> &res, Env &en
     switch(in.peek()) {
       case '#':
         in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        line_number++;
+        break;
       default:
         if (in >> first) {
           if (first.back() == ':') {
@@ -211,6 +213,13 @@ Parser::parseItem(std::istream &in, const Defination::DefEntry *def, Item &res)
     else if (std::strncmp(
         n->first_attribute("type")->value(),
         "address",
+        n->first_attribute("type")->value_size()
+      ) == 0) {
+      CHECK_AND_RETURN(parseImmediate(in, res.literal[n->first_attribute("name")->value()]));
+    }
+    else if (std::strncmp(
+        n->first_attribute("type")->value(),
+        "branch",
         n->first_attribute("type")->value_size()
       ) == 0) {
       CHECK_AND_RETURN(parseImmediate(in, res.literal[n->first_attribute("name")->value()]));

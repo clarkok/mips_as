@@ -68,6 +68,7 @@ public:
   Status parseRegister(const std::string &, int &) const;
   Status parseImmediate(const std::string &, int &) const;
   Status parseAddress(const std::string &, int &) const;
+  Status parseBranch(const std::string &, int &) const;
 };
 
 }

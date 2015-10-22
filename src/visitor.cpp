@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <iostream>
 #include <string>
 #include <map>
 #include <cstdint>
@@ -26,7 +27,7 @@ Visitor::calcPadding(Item *it) const
   auto size = defs->getSize(it->type());
 
   if (offset % size)
-    return size - offset;
+    return size - (offset % size);
   else
     return 0;
 }
@@ -78,21 +79,21 @@ CodeGenVisitor::parseImmediate(const std::string &literal, int &res) const
       std::string tmp;
       switch (literal[1]) {
         case 'x':
-          res = std::stoi(literal.substr(2), nullptr, 16);
+          res = static_cast<int>(std::stoll(literal.substr(2), nullptr, 16));
           break;
         case 'b':
           tmp = literal.substr(2);
-          res = std::stoi(literal.substr(2), nullptr, 2);
+          res = static_cast<int>(std::stoll(literal.substr(2), nullptr, 2));
           break;
         default:
-          res = std::stoi(literal, nullptr, 8);
+          res = static_cast<int>(std::stoll(literal, nullptr, 8));
           break;
       };
     }
     else {
       auto iter = env->labels.find(literal);
       if (iter != env->labels.end()) {
-        res = iter->second - offset;
+        res = (iter->second);
       }
       else
         return ERROR_IN_SOURCE(S_INVALID_VALUE, "Invalid immediate", literal);
@@ -105,7 +106,17 @@ CodeGenVisitor::parseImmediate(const std::string &literal, int &res) const
 Status
 CodeGenVisitor::parseAddress(const std::string &literal, int &res) const
 {
-  return parseImmediate(literal, res);
+  auto ret = parseImmediate(literal, res);
+  res = (res >> 2);
+  return ret;
+}
+
+Status
+CodeGenVisitor::parseBranch(const std::string &literal, int &res) const
+{
+  auto ret = parseImmediate(literal, res);
+  res = (res >> 2) - ((offset >> 2) + 1);
+  return ret;
 }
 
 Status
@@ -131,6 +142,9 @@ CodeGenVisitor::visit(Item *it)
     }
     else if (type == "address") {
       CHECK_AND_RETURN(parseAddress(it->getLiteral(name), res));
+    }
+    else if (type == "branch") {
+      CHECK_AND_RETURN(parseBranch(it->getLiteral(name), res));
     }
     else
       return ERROR_IN_SOURCE(S_INVALID_VALUE, "Invalid decl type", type);
@@ -170,7 +184,7 @@ CodeGenVisitor::visit(Item *it)
   uint32_t zero = 0;
 
   os.write(reinterpret_cast<char*>(&zero), calcPadding(it));
-  os.write(reinterpret_cast<char *>(&data), defs->getSize(it->type()));
+  os.write(reinterpret_cast<char*>(&data), defs->getSize(it->type()));
 
   offset += calcPadding(it) + defs->getSize(it->type());
 

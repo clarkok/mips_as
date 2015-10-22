@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <cstdlib>
 
 #include "arguments.h"
 #include "defination.h"
@@ -42,7 +43,7 @@ main(int argc, char **argv)
   }
 
   Defination defs;
-  auto def_status = defs.load(args.def_file);
+  auto def_status = defs.load(args.def_file.length() ? args.def_file : getenv("MIPS_AS_DEF"));
   if (def_status) {
     OUTPUT_STATUS(cerr, def_status);
     exit(-1);
@@ -78,7 +79,7 @@ main(int argc, char **argv)
     }
 
     for (auto &i : env.labels)
-      fout << i.first << '\t' << i.second << endl;
+      fout << i.second << '\t' << i.first << endl;
   }
 
   if (args.item_file.length()) {

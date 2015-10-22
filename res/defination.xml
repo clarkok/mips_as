@@ -14,6 +14,12 @@
       <param name="rt" type="register" rep="t" />
       <param name="imm" type="immediate" rep="i" />
     </item>
+    <item name="B" format="oooo-ooss-ssst-tttt-aaaa-aaaa-aaaa-aaaa" size="4">
+      <param name="op" type="immediate" rep="o" />
+      <param name="rs" type="register" rep="s" />
+      <param name="rt" type="register" rep="t" />
+      <param name="imm" type="branch" rep="a" />
+    </item>
     <item name="J" format="oooo-ooaa-aaaa-aaaa-aaaa-aaaa-aaaa-aaaa" size="4">
       <param name="op" type="immediate" rep="o" />
       <param name="addr" type="address" rep="a" />
@@ -141,7 +147,7 @@
       <argument type="immediate" name="imm" />
     </instrument>
 
-    <instrument name="nadi" type="I" op="0b001100">
+    <instrument name="andi" type="I" op="0b001100">
       <argument type="register" name="rt" />
       <argument type="register" name="rs" />
       <argument type="immediate" name="imm" />
@@ -170,22 +176,34 @@
       <argument type="register" name="rs" />
     </instrument>
 
+    <instrument name="lb" type="I" op="0b100000">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
     <instrument name="sw" type="I" op="0b101011">
       <argument type="register" name="rt" />
       <argument type="offset" name="imm" />
       <argument type="register" name="rs" />
     </instrument>
 
-    <instrument name="beq" type="I" op="0b000100">
+    <instrument name="sb" type="I" op="0b101000">
       <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
       <argument type="register" name="rs" />
-      <argument type="immediate" name="imm" />
     </instrument>
 
-    <instrument name="bne" type="I" op="0b000101">
+    <instrument name="beq" type="B" op="0b000100">
       <argument type="register" name="rt" />
       <argument type="register" name="rs" />
-      <argument type="immediate" name="imm" />
+      <argument type="branch" name="imm" />
+    </instrument>
+
+    <instrument name="bne" type="B" op="0b000101">
+      <argument type="register" name="rt" />
+      <argument type="register" name="rs" />
+      <argument type="branch" name="imm" />
     </instrument>
 
     <instrument name="slti" type="I" op="0b001010">
@@ -222,6 +240,44 @@
   </defination>
   <registers>
     <reg name="zero" id="0" />
-    <reg name="sp" id="30" />
+    <reg name="at" id="1" />
+
+    <reg name="v0" id="2" />
+    <reg name="v1" id="3" />
+
+    <reg name="a0" id="4" />
+    <reg name="a1" id="5" />
+    <reg name="a2" id="6" />
+    <reg name="a3" id="7" />
+
+    <reg name="t0" id="8" />
+    <reg name="t1" id="9" />
+    <reg name="t2" id="10" />
+    <reg name="t3" id="11" />
+    <reg name="t4" id="12" />
+    <reg name="t5" id="13" />
+    <reg name="t6" id="14" />
+    <reg name="t7" id="15" />
+
+    <reg name="s0" id="16" />
+    <reg name="s1" id="17" />
+    <reg name="s2" id="18" />
+    <reg name="s3" id="19" />
+    <reg name="s4" id="20" />
+    <reg name="s5" id="21" />
+    <reg name="s6" id="22" />
+    <reg name="s7" id="23" />
+
+    <reg name="t8" id="24" />
+    <reg name="t9" id="25" />
+
+    <reg name="k0" id="26" />
+    <reg name="k1" id="27" />
+
+    <reg name="gp" id="28" />
+    <reg name="sp" id="29" />
+    <reg name="fp" id="30" />
+
+    <reg name="ra" id="31" />
   </registers>
 </document>

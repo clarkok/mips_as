@@ -17,7 +17,7 @@ struct Env;
 
 class Parser
 {
-  int line_number = 0;
+  int line_number = 1;
 public:
   Status parse(std::istream &fin, Defination &, std::vector<Item> &res, Env &env);
 

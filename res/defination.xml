@@ -135,6 +135,23 @@
       <argument type="register" name="rs" />
     </instrument>
 
+    <instrument name="syscall" type="R" op="0b000000" func="0b001100" shamt="0b000000" rs="0" rd="0">
+      <argument type="register" name="rt" />
+    </instrument>
+
+    <instrument name="eret" type="R" op="0b001010" func="0b010010" shamt="0b000000" rs="0" rd="0" rt="0">
+    </instrument>
+
+    <instrument name="mfco" type="R" op="0b010000" func="0b000000" shamt="0b000000" rs="0">
+      <argument type="register" name="rt" />
+      <argument type="immediate" name="rd" />
+    </instrument>
+
+    <instrument name="mtco" type="R" op="0b010000" func="0b000100" shamt="0b000000" rs="0">
+      <argument type="register" name="rt" />
+      <argument type="immediate" name="rd" />
+    </instrument>
+
     <instrument name="addi" type="I" op="0b001000">
       <argument type="register" name="rt" />
       <argument type="register" name="rs" />
@@ -176,6 +193,12 @@
       <argument type="register" name="rs" />
     </instrument>
 
+    <instrument name="lh" type="I" op="0b100001">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
     <instrument name="lb" type="I" op="0b100000">
       <argument type="register" name="rt" />
       <argument type="offset" name="imm" />
@@ -183,6 +206,12 @@
     </instrument>
 
     <instrument name="sw" type="I" op="0b101011">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
+    <instrument name="sh" type="I" op="0b101001">
       <argument type="register" name="rt" />
       <argument type="offset" name="imm" />
       <argument type="register" name="rs" />

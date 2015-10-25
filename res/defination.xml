@@ -193,6 +193,12 @@
       <argument type="register" name="rs" />
     </instrument>
 
+    <instrument name="lh" type="I" op="0b100001">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
     <instrument name="lb" type="I" op="0b100000">
       <argument type="register" name="rt" />
       <argument type="offset" name="imm" />
@@ -200,6 +206,12 @@
     </instrument>
 
     <instrument name="sw" type="I" op="0b101011">
+      <argument type="register" name="rt" />
+      <argument type="offset" name="imm" />
+      <argument type="register" name="rs" />
+    </instrument>
+
+    <instrument name="sh" type="I" op="0b101001">
       <argument type="register" name="rt" />
       <argument type="offset" name="imm" />
       <argument type="register" name="rs" />
